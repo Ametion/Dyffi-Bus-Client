@@ -1,4 +1,4 @@
-from client import DyffiClient
+from dyffi_client.client import DyffiClient
 
 client = DyffiClient("http://127.0.0.1:8000")
 

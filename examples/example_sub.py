@@ -1,4 +1,4 @@
-from client import DyffiClient
+from dyffi_client.client import DyffiClient
 
 
 def order_handler(message):
