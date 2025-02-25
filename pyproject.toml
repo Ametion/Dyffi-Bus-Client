@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dyffi-client"
+name = "dyffi-bus-client"
 version = "0.1.0"
 authors = [
     {name = "Yehor Kochetov", email = "yehor.kochetov@gmail.com"}
@@ -18,5 +18,5 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Ametion/dyffi-client"
-Repository = "https://github.com/Ametion/dyffi-client"
+Homepage = "https://github.com/Ametion/Dyffi-Bus-Client"
+Repository = "https://github.com/Ametion/Dyffi-Bus-Client"

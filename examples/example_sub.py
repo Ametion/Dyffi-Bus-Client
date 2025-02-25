@@ -1,4 +1,4 @@
-from dyffi_client.client import DyffiClient
+from dyffi_client.client import DyffiBusClient
 
 
 def order_handler(message):
@@ -10,7 +10,7 @@ def topic_handler(message):
     print("Got Message:", message)
 
 
-client = DyffiClient("http://127.0.0.1:8000")
+client = DyffiBusClient("http://127.0.0.1:8000")
 
 client.subscribe("orders", order_handler, blocking=False)
 

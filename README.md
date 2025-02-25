@@ -14,10 +14,10 @@ pip install dyffi-client
 ### 1. Create a Client
 
 ```python
-from dyffi_client import DyffiClient
+from dyffi_client import DyffiBusClient
 
 # Initialize the client with the base URL of your pub/sub service
-client = DyffiClient("http://127.0.0.1:8000")
+client = DyffiBusClient("http://127.0.0.1:8000")
 ```
 
 ### 2. Publish Messages
@@ -60,9 +60,9 @@ This starts a simple loop that keeps your script running indefinitely. Press Ctr
 ### Example: Publishing
 
 ```python
-from dyffi_client import DyffiClient
+from dyffi_client import DyffiBusClient
 
-client = DyffiClient("http://127.0.0.1:8000")
+client = DyffiBusClient("http://127.0.0.1:8000")
 
 message_id = client.publish("orders", {"order_id": 123, "customer": "Alice"})
 print("Sent message with ID:", message_id)
@@ -71,16 +71,19 @@ print("Sent message with ID:", message_id)
 ### Example: Subscribing to Multiple Topics
 
 ```python
-from dyffi_client import DyffiClient
+from dyffi_client import DyffiBusClient
+
 
 def order_handler(message):
-    print("Got Message:", message)
-    print("Order ID:", message["payload"]["order_id"])
+  print("Got Message:", message)
+  print("Order ID:", message["payload"]["order_id"])
+
 
 def topic_handler(message):
-    print("Got Message:", message)
+  print("Got Message:", message)
 
-client = DyffiClient("http://127.0.0.1:8000")
+
+client = DyffiBusClient("http://127.0.0.1:8000")
 
 # Subscribe to 'orders' in a non-blocking thread
 client.subscribe("orders", order_handler, blocking=False)

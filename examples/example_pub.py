@@ -1,6 +1,6 @@
-from dyffi_client.client import DyffiClient
+from dyffi_client.client import DyffiBusClient
 
-client = DyffiClient("http://127.0.0.1:8000")
+client = DyffiBusClient("http://127.0.0.1:8000")
 
 message_id = client.publish("orders", {"order_id": 123, "customer": "Alice"})
 print("Sent message with ID:", message_id)

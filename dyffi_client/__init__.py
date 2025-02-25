@@ -1,1 +1,1 @@
-from .client import DyffiClient
+from .client import DyffiBusClient
