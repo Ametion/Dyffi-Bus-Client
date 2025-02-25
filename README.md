@@ -6,7 +6,7 @@
 
 
 ```bash
-pip install dyffi-client
+pip install dyffi-bus-client
 ```
 
 ## Usage
