@@ -1,4 +1,4 @@
-from dyffi_client.client import DyffiBusClient
+from dyffi_bus_client.client import DyffiBusClient
 
 client = DyffiBusClient("http://127.0.0.1:8000")
 

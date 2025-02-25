@@ -14,7 +14,7 @@ pip install dyffi-client
 ### 1. Create a Client
 
 ```python
-from dyffi_client import DyffiBusClient
+from dyffi_bus_client import DyffiBusClient
 
 # Initialize the client with the base URL of your pub/sub service
 client = DyffiBusClient("http://127.0.0.1:8000")
@@ -60,7 +60,7 @@ This starts a simple loop that keeps your script running indefinitely. Press Ctr
 ### Example: Publishing
 
 ```python
-from dyffi_client import DyffiBusClient
+from dyffi_bus_client import DyffiBusClient
 
 client = DyffiBusClient("http://127.0.0.1:8000")
 
@@ -71,7 +71,7 @@ print("Sent message with ID:", message_id)
 ### Example: Subscribing to Multiple Topics
 
 ```python
-from dyffi_client import DyffiBusClient
+from dyffi_bus_client import DyffiBusClient
 
 
 def order_handler(message):
