@@ -1,6 +1,6 @@
-# DyffiClient
+# Dyffi-Bus-Client
 
-**DyffiClient** is a lightweight Python library for interacting with Dyffi-Bus via HTTP and WebSockets. It abstracts away the details of publishing messages and subscribing to topics, letting you focus on your application logic.
+**Dyffi-Bus-Client** is a lightweight Python library for interacting with Dyffi-Bus via HTTP and WebSockets. It abstracts away the details of publishing messages and subscribing to topics, letting you focus on your application logic.
 
 ## Installation
 

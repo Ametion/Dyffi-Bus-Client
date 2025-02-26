@@ -35,13 +35,13 @@ class DyffiBusClient:
                 message = json.loads(message_json)
                 handler(message)
         except WebSocketConnectionClosedException:
-            print("WebSocket соединение закрыто.")
+            print("WebSocket connection closed.")
         except Exception as e:
-            print(f"Ошибка в подписке: {e}")
+            print(f"Error: {e}")
 
     def listen(self):
         try:
             while True:
                 time.sleep(1)
         except KeyboardInterrupt:
-            print("Выход из прослушивания.")
+            print("Exiting...")
