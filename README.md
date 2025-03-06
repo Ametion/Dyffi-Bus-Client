@@ -27,6 +27,13 @@ message_id = client.publish("orders", {"order_id": 123, "customer": "Alice"})
 print("Sent message with ID:", message_id)
 ```
 
+### 2.1. Async Publish Messages (Optional)
+
+```python
+message_id = client.publish_async("orders", {"order_id": 123, "customer": "Alice"}) #Its just async version of publish
+print("Sent message with ID:", message_id)
+```
+
 - **`topic`**: The topic name to publish to.
 - **`payload`**: A dictionary containing the message data.
 
