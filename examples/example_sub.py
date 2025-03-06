@@ -1,4 +1,4 @@
-from dyffi_bus_client.client import DyffiBusClient
+from dyffi_bus_client import DyffiBusClient
 
 
 def order_handler(message):

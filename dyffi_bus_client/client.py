@@ -1,8 +1,9 @@
-import requests
 import json
 import threading
 import time
+from io import BytesIO
 
+import pycurl
 from websocket import create_connection, WebSocketConnectionClosedException
 
 
@@ -12,12 +13,47 @@ class DyffiBusClient:
 
     def publish(self, topic, payload):
         url = f"{self.api_url}/publish"
-        data = {"topic": topic, "payload": payload}
-        print(url)
-        response = requests.post(url, json=data)
-        response.raise_for_status()
-        result = response.json()
-        return result.get("message_id")
+        data = json.dumps({"topic": topic, "payload": payload})
+        buffer = BytesIO()
+        c = pycurl.Curl()
+        c.setopt(c.URL, url)
+        c.setopt(c.HTTPHEADER, ['Content-Type: application/json'])
+        c.setopt(c.POSTFIELDS, data)
+        c.setopt(c.WRITEDATA, buffer)
+        try:
+            c.perform()
+        finally:
+            c.close()
+        response_body = buffer.getvalue().decode('utf-8')
+        response_json = json.loads(response_body)
+        return response_json.get("message_id")
+
+    def publish_async(self, topic, payload, callback=None):
+        url = f"{self.api_url}/publish"
+        data = json.dumps({"topic": topic, "payload": payload})
+        thread = threading.Thread(target=self._publish_thread, args=(url, data, callback), daemon=True)
+        thread.start()
+
+    def _publish_thread(self, url, data, callback):
+        buffer = BytesIO()
+        c = pycurl.Curl()
+        c.setopt(c.URL, url)
+        c.setopt(c.HTTPHEADER, ['Content-Type: application/json'])
+        c.setopt(c.POSTFIELDS, data)
+        c.setopt(c.WRITEDATA, buffer)
+        try:
+            c.perform()
+            response_body = buffer.getvalue().decode('utf-8')
+            response_json = json.loads(response_body)
+            result = response_json.get("message_id")
+            if callback:
+                callback(result)
+        except Exception as e:
+            print("Error in async publish:", e)
+            if callback:
+                callback(None)
+        finally:
+            c.close()
 
     def subscribe(self, topic, handler, blocking=False):
         if blocking:
